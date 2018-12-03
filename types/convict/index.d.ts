@@ -4,6 +4,7 @@
 //                 Vesa Poikajärvi <https://github.com/vesse>
 //                 Eli Young <https://github.com/elyscape>
 //                 Suntharesan Mohan <https://github.com/vanthiyathevan>
+//                 rhapsodyn <https://github.com/rhapsodyn>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.8
 
@@ -36,6 +37,19 @@ declare namespace convict {
         extension: string | string[];
         parse: (content: string) => any;
     }
+    
+    type PredefinedFormat =
+        | '*'
+        | 'int'
+        | 'port'
+        | 'windows_named_pipe'
+        | 'port_or_windows_named_pipe'
+        | 'url'
+        | 'email'
+        | 'ipaddress'
+        | 'duration'
+        | 'timestamp'
+        | 'nat';
 
     interface SchemaObj<T = any> {
         default: T;
@@ -52,7 +66,7 @@ declare namespace convict {
          * If omitted, format will be set to the value of Object.prototype.toString.call
          * for the default value
          */
-        format?: string | any[] | ((val: any) => void);
+        format?: PredefinedFormat | any[] | ((val: any) => void);
         env?: string;
         arg?: string;
         sensitive?: boolean;
